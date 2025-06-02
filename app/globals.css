@@ -49,3 +49,76 @@ body {
 --color-sidebar-ring: hsl(217.2, 91.2%, 59.8%);
 
 }
+
+
+#welcome-header {
+  height: 100vh;
+}
+
+#welcome-header-content {
+  width: 40rem;
+  position: absolute;
+  top: 30%;
+  left: calc(50% - 20rem);
+  z-index: 1;
+  text-shadow: 0 0 6px rgba(0, 0, 0, 0.5);
+  text-align: center;
+}
+
+#welcome-header-content h1 {
+  font-size: 3rem;
+  color: #fff;
+  margin: 2rem 0;
+}
+
+#cta-link {
+  display: inline-block;
+  padding: 0.5rem 1rem;
+  background-color: #030712;
+  color: #fff;
+  border: 1px solid var(--color-accent);
+  border-radius: 4px;
+  text-decoration: none;
+  font-size: 0.9rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  margin-top: 4px;
+  transition:  0.3s ease-in;
+}
+
+#cta-link:hover {
+  background-color: var(--color-accent);
+  cursor: pointer;
+}
+
+#city-image {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  object-fit: cover;
+}
+
+@media (width >= 1280px) {
+  #city-image {
+  width: 100%;
+  height: auto;
+  position: absolute;
+  top: -50%;
+  left: 0;
+  object-fit: cover;
+  z-index: -1;
+}
+}
+
+
+#hero-image {
+  width: 20rem;
+  max-width: 40%;
+  position: absolute;
+  bottom: 10%;
+  left: 25%;
+  object-fit: cover;
+  filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.5));
+}
