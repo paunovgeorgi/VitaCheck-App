@@ -5,18 +5,18 @@ const Benefits = () => {
   const benefits = [
   {
     icon: Lightbulb,
-    titleKey: "Comprehensive Tracking",
-    descriptionKey: "Log vitamins, minerals, herbs, and more, categorized by time of day and relation to food for complete accuracy.",
+    title: "Comprehensive Tracking",
+    description: "Log vitamins, minerals, herbs, and more, categorized by time of day and relation to food for complete accuracy.",
   },
   {
     icon: Brain,
-    titleKey: "Smart AI Guidance & Reasoning",
-    descriptionKey: "Get personalized intake suggestions. VitaCheck's AI explains *why* it makes a suggestion, empowering you.",
+    title: "Smart AI Guidance & Reasoning",
+    description: "Get personalized intake suggestions. VitaCheck's AI explains *why* it makes a suggestion, empowering you.",
   },
   {
     icon: Timer,
-    titleKey: "Effortless Logging",
-    descriptionKey: "Our intuitive interface and smart features like autocomplete make adding supplements quick and easy.",
+    title: "Effortless Logging",
+    description: "Our intuitive interface and smart features like autocomplete make adding supplements quick and easy.",
   },
 ];
 
@@ -40,10 +40,10 @@ const Benefits = () => {
               >
                 <IconComponent className="w-10 h-10 md:w-12 md:h-12 mb-4 text-green-300 animate-pulse" />
                 <h3 className="text-xl md:text-2xl font-semibold text-card-foreground mb-3">
-                  {benefit.titleKey}
+                  {benefit.title}
                 </h3>
                 <p className="text-muted-foreground">
-                  {benefit.descriptionKey}
+                  {benefit.description}
                 </p>
               </div>
             );
