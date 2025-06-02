@@ -1,6 +1,7 @@
 import Benefits from "./components/Benefits";
 import CTA from "./components/CTA";
 import Features from "./components/Features";
+import Footer from "./components/Footer";
 import HomeHeader from "./components/HomeHeader";
 import HowItWorks from "./components/HowItWorks";
 import PreviewApp from "./components/PreviewApp";
@@ -21,6 +22,7 @@ export default function Home() {
       <Testimonials />
       <Features />
       <CTA />
+      <Footer />
     </>
   );
 }
