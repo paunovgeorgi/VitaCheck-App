@@ -1,5 +1,6 @@
 import Benefits from "./components/Benefits";
 import HomeHeader from "./components/HomeHeader";
+import PreviewApp from "./components/PreviewApp";
 
 
 export default function Home() {
@@ -11,6 +12,7 @@ export default function Home() {
     <>
       <HomeHeader />
       <Benefits />
+      <PreviewApp />
     </>
   );
 }
