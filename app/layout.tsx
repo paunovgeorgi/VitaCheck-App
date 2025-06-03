@@ -1,7 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.css";
-
-
+import NavBar from "@/components/NavBar";
+import { ClerkProvider } from "@clerk/nextjs";
+import { dark } from '@clerk/themes'
+// appearance={{ variables: {colorPrimary: '#36d399', colorBackground: "#030712", colorText: '#fafafa'}}}
 
 export const metadata: Metadata = {
   title: "Create Next App",
@@ -16,7 +18,13 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <ClerkProvider appearance={{
+        baseTheme: dark,
+        variables: {colorPrimary: '#36d399'},    
+      }}>
+          <NavBar />
+          {children}
+        </ClerkProvider>
       </body>
     </html>
   );

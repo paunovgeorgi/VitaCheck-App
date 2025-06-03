@@ -2,20 +2,17 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
-
-
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
   background: linear-gradient(#030712, #03110f);
-  /* background: black; */
   color: #d9e2f1;
   min-height: 100vh;
   overflow-x: hidden;
 }
 
 @theme {
-/* --color-background: hsl(222.2, 84%, 4.9%); */
+--color-background: #030712;
 --color-foreground: hsl(0, 0%, 98%);
 --color-card: hsl(222.2, 84%, 4.9%);
 --color-card-foreground: hsl(0, 0%, 98%);
@@ -49,7 +46,6 @@ body {
 --color-sidebar-ring: hsl(217.2, 91.2%, 59.8%);
 
 }
-
 
 #welcome-header {
   height: 100vh;
@@ -112,7 +108,6 @@ body {
 }
 }
 
-
 #hero-image {
   width: 20rem;
   max-width: 40%;
@@ -122,3 +117,29 @@ body {
   object-fit: cover;
   filter: drop-shadow(0 0 6px rgba(0, 0, 0, 0.5));
 }
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  main {
+    @apply mx-auto items-center px-14 flex flex-col gap-8 h-[100vh] max-w-[1400px] pt-10 max-sm:px-2;
+  }
+  h1 {
+    @apply text-3xl font-bold;
+  }
+}
+
+@layer components {
+    .navbar {
+    @apply fixed z-1000 flex items-center justify-between mx-auto w-full px-14 py-4 text-foreground max-sm:px-4;
+    &.scrolled {
+      @apply bg-background transition;
+    }
+  }
+    .btn-signin {
+    @apply border border-accent rounded-3xl px-4 py-2 text-sm font-semibold flex items-center gap-2 cursor-pointer hover:text-accent transition duration-300;
+  }
+}
+
