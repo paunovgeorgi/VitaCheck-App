@@ -12,3 +12,5 @@ export const testimonials = [
     author: "- George A.",
   },
 ];
+
+export const PERIODS = ['Morning', 'Noon', 'Evening'];
