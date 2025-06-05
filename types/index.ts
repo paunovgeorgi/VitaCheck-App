@@ -32,3 +32,8 @@ export enum FoodRelation {
 export type FoodRelationType = `${FoodRelation}`;
 
 export type Period = (typeof PERIODS)[number];
+
+export type CommonSupplement = {
+    name: string;
+    dosage: string;
+};
