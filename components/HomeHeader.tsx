@@ -1,6 +1,7 @@
 "use client";
 
 import { motion, useScroll, useTransform } from "framer-motion";
+import Link from "next/link";
 
 const HomeHeader = () => {
   const { scrollY } = useScroll();
@@ -26,12 +27,14 @@ const HomeHeader = () => {
         >
           <h1 style={{ marginBottom: 0 }}>VitaCheck</h1>
           <p>Your Super-Smart Supplement Categorizer</p>
+          <Link href='/my-supplements'>
           <button id="cta-link">Go To App</button>
+          </Link>
         </motion.div>
         <motion.img
           style={{ opacity: opacityCity, y: yCity }}
           src="/images/city.jpg"
-          alt="A city skyline touched by sunlight"
+          alt="A city skyline green lines"
           id="city-image"
         />
         <motion.img

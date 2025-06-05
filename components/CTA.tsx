@@ -1,6 +1,7 @@
 'use client';
 
 import { motion } from 'framer-motion'
+import Link from 'next/link';
 
 const CTA = () => {
   return (
@@ -12,9 +13,11 @@ const CTA = () => {
         <p className="text-lg md:text-xl text-muted-foreground mb-8 max-w-xl mx-auto">
           Join thousands taking control of their wellness journey with VitaCheck.
         </p>
+        <Link href='/my-supplements'>
           <button  className="bg-accent hover:bg-accent/90 text-accent-foreground rounded-2xl font-semibold px-6 py-4 text-lg">
             Get Started - It's Free!
           </button>
+        </Link>
         <p className="mt-8 text-muted-foreground">
           Coming Soon to:
         </p>
