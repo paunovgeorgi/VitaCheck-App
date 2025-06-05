@@ -6,7 +6,7 @@ import { testimonials } from "../constants";
 
 const Testimonials = () => {
   return (
-      <section id="testimonials" className="py-16 md:py-24 bg-secondary/20 text-foreground">
+      <section id="testimonials" className="py-16 md:py-24  text-foreground">
       <div className="container mx-auto px-4 text-center">
         <h2 className="text-3xl md:text-4xl font-bold text-accent mb-12">
           Hear From Our Users

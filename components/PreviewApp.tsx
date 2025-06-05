@@ -6,7 +6,7 @@ const PreviewApp = () => {
   return (
     <section
       id="how-it-works"
-      className="py-16 md:py-24 bg-background text-foreground"
+      className="py-16 md:py-24  text-foreground"
     >
       <div className="container mx-auto px-4 text-center">
         <motion.h2 className="text-3xl md:text-4xl font-bold text-accent mb-12"
