@@ -1,46 +1,5 @@
 'use server';
 
-// 'use server';
-
-// import { model } from '@/ai/ai-instance';
-// import { CategorizationSchema, SupplementCategorization } from '@/types/ai/index';
-
-// const PROMPT_TEMPLATE = `Based on the supplement name "{supplementName}", suggest the most appropriate time of day (Morning, Noon, or Evening) and relation to food (Before Eating, With Food, or After Eating) categories. Also provide a brief reasoning for your suggestions.
-
-// Please structure your response exactly as a JSON object with these fields:
-// {
-//   "suggestedTimeCategory": "Morning|Noon|Evening",
-//   "suggestedMealCategory": "Before Eating|With Food|After Eating",
-//   "reasoning": "Your reasoning here"
-// }
-
-// Supplement: {supplementName}`;
-
-// export async function categorizeSupplement(
-//   supplementName: string
-// ): Promise<SupplementCategorization> {
-//   try {
-//     const prompt = PROMPT_TEMPLATE.replace('{supplementName}', supplementName);
-    
-//     const result = await model.generateContent(prompt);
-//     const response = result.response;
-//     const text = response.text();
-    
-//     // Parse the JSON response
-//     const jsonResponse = JSON.parse(text);
-    
-//     // Validate the response against our schema
-//     const validated = CategorizationSchema.parse(jsonResponse);
-    
-//     return validated;
-//   } catch (error) {
-//     console.error('Error categorizing supplement:', error);
-//     throw new Error('Failed to categorize supplement');
-//   }
-// }
-
-
-
 import { model } from '@/ai/ai-instance';
 import { CategorizationSchema, SupplementCategorization } from '@/types/ai/index';
 
@@ -51,13 +10,13 @@ You must respond with a valid JSON object using exactly this format:
 {
   "suggestedTimeCategory": "Morning",
   "suggestedMealCategory": "Before Eating",
-  "reasoning": "Brief explanation here"
+  "reasoning": "Brief explanation here for your suggestion"
 }
 
 Rules:
 - suggestedTimeCategory must be exactly "Morning", "Noon", or "Evening"
 - suggestedMealCategory must be exactly "Before Eating", "With Food", or "After Eating"
-- reasoning should be a brief, clear explanation
+- reasoning should be a brief, clear explanation for the suggestion
 - Response must be valid JSON only, no additional text
 
 Supplement to analyze: {supplementName}`;
