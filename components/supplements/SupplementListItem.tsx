@@ -29,8 +29,14 @@ const SupplementListItem = ({supp }: SupplementListItemProps) => {
     try {
       setIsDeleting(true);
       await removeSupplement(supp.id);
-      toast('Supplement successfully removed')
+      toast.success('Deleted', {
+        description: `${supp.name} has been deleted.`,
+        duration: 3000,
+      });
     } catch (error) {
+       toast.error('Error', {
+              description: 'Could not delete supplement. Please try again.',
+            });
       console.log('Could not delete supplement', error);
       
     }

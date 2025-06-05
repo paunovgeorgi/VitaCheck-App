@@ -9,7 +9,11 @@ import { useSupplements } from '@/hooks/useSupplements';
 
 
 const MySupplements = () => {
- const { supplements, isLoading, openPeriods} = useSupplements();
+ const { supplements, isLoading, openPeriods, error} = useSupplements();
+
+ if(error){
+  return <div>Error fetching supplements.</div>
+ }
 
   return (
     <>
