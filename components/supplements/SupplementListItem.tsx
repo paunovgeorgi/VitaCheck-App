@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Pill, Trash2, Info } from 'lucide-react';
+import { Pill, Trash2, Info, Loader2 } from 'lucide-react';
+import { toast } from 'sonner';
 import {
   Dialog,
   DialogTrigger,
@@ -11,14 +12,31 @@ import {
 } from '@/components/ui/dialog';
 import { Button } from "@/components/ui/button";
 import { Supplement } from '@/types';
+import { useSupplements } from '@/hooks/useSupplements';
 
 interface SupplementListItemProps {
     supp: Supplement,
-    onRemoveHandle: (id: string) => void;
+    // onRemoveHandle: (id: string) => void;
 }
 
 
-const SupplementListItem = ({supp, onRemoveHandle }: SupplementListItemProps) => {
+const SupplementListItem = ({supp }: SupplementListItemProps) => {
+
+  const {removeSupplement, isLoading} = useSupplements();
+  const [isDeleting, setIsDeleting] = useState(false);
+
+  const handleRemoveSupplement = async () => {
+    try {
+      setIsDeleting(true);
+      await removeSupplement(supp.id);
+      toast('Supplement successfully removed')
+    } catch (error) {
+      console.log('Could not delete supplement', error);
+      
+    }
+    setIsDeleting(false);
+  }
+
   const [open, setOpen] = useState(false);
 
   return (
@@ -59,11 +77,10 @@ const SupplementListItem = ({supp, onRemoveHandle }: SupplementListItemProps) =>
         )}
 
       </div>
-
-      <Trash2
-        onClick={() => onRemoveHandle(supp.id)}
+      {isDeleting ? <Loader2 className='animate-spin size-4'/> :  <Trash2
+        onClick={handleRemoveSupplement}
         className="size-4 text-red-400 hover:text-red-500 hover:cursor-pointer"
-      />
+      />}   
     </li>
   );
 };

@@ -4,15 +4,15 @@ import { useState, useEffect, useRef } from 'react';
 import { Loader2, Wand2 } from 'lucide-react';
 import { commonSupplements } from '@/constants';
 import { useFilteredSuggestions } from '@/hooks/useFilteredSuggestions';
-import { CommonSupplement, createSupplementInterface, FoodRelation, TimeOfDay } from '@/types';
+import { CommonSupplement, FoodRelation, TimeOfDay } from '@/types';
 import { categorizeSupplement } from '@/lib/actions/ai.action';
+import { useSupplements } from '@/hooks/useSupplements';
+import { toast } from "sonner"
 
+const SupplementInput = () => {
 
-interface SupplementInputProps {
-  onAddSupplement: (supplement: createSupplementInterface) => void;
-}
+  const {isLoading, addSupplement, setOpenPeriod} = useSupplements();
 
-const SupplementInput = ({ onAddSupplement }: SupplementInputProps) => {
   const [name, setName] = useState('');
   const [dosage, setDosage] = useState('');
   const [isCategorizing, setIsCategorizing] = useState(false);
@@ -20,15 +20,13 @@ const SupplementInput = ({ onAddSupplement }: SupplementInputProps) => {
   const [relation, setRelation] = useState<FoodRelation>(FoodRelation.BEFORE);
   const [time, setTime] = useState<TimeOfDay>(TimeOfDay.morning);
   const [error, setError] = useState('');
+  const [isAdding, setIsAdding] = useState(false);
 
   const { suggestions, showSuggestions, setShowSuggestions } = useFilteredSuggestions(name, commonSupplements);
 
   const inputRef = useRef<HTMLInputElement | null>(null);
 const suggestionsRef = useRef<HTMLUListElement | null>(null);
-//   const apiEndpoint = import.meta.env.VITE_AI_API_ENDPOINT;
 
-
-  // Suggestion filter
   useEffect(() => {
   setReasoning('');
   setError('');
@@ -41,16 +39,6 @@ const suggestionsRef = useRef<HTMLUListElement | null>(null);
   };
 
  const handleBlur = () => {
-  // requestAnimationFrame(() => {
-  //   const active = document.activeElement;
-  //   if (
-  //     !suggestionsRef.current?.contains(active) &&
-  //     active !== inputRef.current
-  //   ) {
-  //     setShowSuggestions(false);
-  //   }
-  // });
-
     setTimeout(() => {
     const active = document.activeElement;
     if (
@@ -60,7 +48,6 @@ const suggestionsRef = useRef<HTMLUListElement | null>(null);
       setShowSuggestions(false);
     }
   }, 0);
-  // setShowSuggestions(false);
 };
 
 
@@ -76,7 +63,8 @@ const suggestionsRef = useRef<HTMLUListElement | null>(null);
     setIsCategorizing(true);
     setReasoning('');
     try{
-    const data = await categorizeSupplement(name);
+      setError('');
+      const data = await categorizeSupplement(name);
     console.log(data);
     
       setReasoning(data.reasoning || '');
@@ -90,18 +78,32 @@ const suggestionsRef = useRef<HTMLUListElement | null>(null);
     }
   };
 
-  const handleAdd = () => {
+    const handleAdd = async () => {
     if (!name) return;
-    onAddSupplement({
-      name,
-      dosage,
-      reasoning,
-      relation,
-      time
-    });
-    setName('');
-    setDosage('');
-    setReasoning('');
+    try {
+      setIsAdding(true);
+      await addSupplement({
+        name,
+        dosage,
+        reasoning,
+        relation,
+        time
+      });
+      setName('');
+      setDosage('');
+      setReasoning('');
+       toast.success('Success', {
+        description: `${name} has been added to your supplements.`,
+        duration: 3000,
+      });
+      setOpenPeriod(time, true);
+    } catch (error) {
+       toast.error('Error', {
+        description: 'Could not add supplement. Please try again.',
+      });
+      console.log('Could not add supplement', error);    
+    }
+    setIsAdding(false);  
   };
 
   return (
@@ -188,9 +190,10 @@ const suggestionsRef = useRef<HTMLUListElement | null>(null);
       <button
         disabled={!name}
         onClick={handleAdd}
-        className="mt-4  w-full py-2 rounded bg-accent enabled:hover:bg-accent/80 enabled:hover:cursor-pointer transition font-semibold text-white"
+        className="mt-4 text-center w-full py-2 rounded bg-accent enabled:hover:bg-accent/80 enabled:hover:cursor-pointer transition font-semibold text-white"
       >
-        Add Supplement
+        {isAdding ? <Loader2 className='animate-spin mx-auto'/> : 'Add Supplement'}
+        
       </button>
     </div>
   );

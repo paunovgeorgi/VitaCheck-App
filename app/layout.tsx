@@ -3,6 +3,8 @@ import "./globals.css";
 import NavBar from "@/components/NavBar";
 import { ClerkProvider } from "@clerk/nextjs";
 import { dark } from '@clerk/themes'
+import { SupplementContextProvider } from "@/store/SupplementContext";
+import { Toaster } from "@/components/ui/sonner"
 // appearance={{ variables: {colorPrimary: '#36d399', colorBackground: "#030712", colorText: '#fafafa'}}}
 
 export const metadata: Metadata = {
@@ -22,8 +24,11 @@ export default function RootLayout({
         baseTheme: dark,
         variables: {colorPrimary: '#36d399'},    
       }}>
+        <SupplementContextProvider>
           <NavBar />
           {children}
+          <Toaster />
+        </SupplementContextProvider>
         </ClerkProvider>
       </body>
     </html>
