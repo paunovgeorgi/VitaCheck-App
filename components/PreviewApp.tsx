@@ -1,8 +1,25 @@
 'use client';
 import { motion } from "framer-motion";
+import { useEffect, useState } from "react";
 
 
 const PreviewApp = () => {
+
+
+   const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 768);
+  }, []);
+
+  const leftAnimation = isMobile 
+    ? { opacity: 0 } 
+    : { x: -120, opacity: 0 };
+
+  const rightAnimation = isMobile 
+    ? { opacity: 0 } 
+    : { x: 120, opacity: 0 };
+
   return (
     <section
       id="how-it-works"
@@ -19,7 +36,7 @@ const PreviewApp = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 gap-2 md:gap-2 items-center">
           <motion.div
             className="flex flex-col gap-2 items-center text-center p-4"
-            initial={{ x: -120, opacity: 0 }}
+            initial={leftAnimation}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: false, amount: 0.3 }}
@@ -39,7 +56,7 @@ const PreviewApp = () => {
           </motion.div>
           <motion.div
             className=""
-            initial={{ x: 120, opacity: 0 }}
+            initial={rightAnimation}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8, }}
             viewport={{ once: false, amount: 0.3 }}

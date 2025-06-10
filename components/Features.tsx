@@ -1,8 +1,23 @@
 'use client';
 
 import {motion} from 'framer-motion';
+import { useEffect, useState } from 'react';
 
 const Features = () => {
+
+   const [isMobile, setIsMobile] = useState(false);
+  
+    useEffect(() => {
+      setIsMobile(window.innerWidth < 768);
+    }, []);
+  
+    const leftAnimation = isMobile 
+      ? { opacity: 0 } 
+      : { x: -120, opacity: 0 };
+  
+    const rightAnimation = isMobile 
+      ? { opacity: 0 } 
+      : { x: 120, opacity: 0 };
 
   return (
      <section id="features" className="py-16 md:py-24 bg-gray-950 text-foreground">
@@ -12,7 +27,7 @@ const Features = () => {
         </h2>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-1 md:gap-2">
            <motion.div className="flex flex-col items-center text-center p-4" 
-              initial={{ x: -120, opacity: 0 }}
+              initial={leftAnimation}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: false, amount: 0.3 }}>
@@ -49,7 +64,7 @@ const Features = () => {
                 </p>
               </motion.div>
                  <motion.div className="flex flex-col items-center text-center p-4" 
-                    initial={{ x: 120, opacity: 0 }}
+                    initial={rightAnimation}
             whileInView={{ x: 0, opacity: 1 }}
             transition={{ duration: 0.8 }}
             viewport={{ once: false, amount: 0.3 }}>

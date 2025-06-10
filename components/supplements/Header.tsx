@@ -1,7 +1,7 @@
 
 const Header = () => {
   return (
-      <header className="text-center mb-4 flex flex-col items-center">
+      <header className="text-center mb-4 max-sm:mt-2 flex flex-col items-center">
         <div>
              <img src='/images/vitalogo-final.png' className='w-[100px]' loading='eager'/>
         </div>

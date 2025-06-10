@@ -129,7 +129,7 @@ const suggestionsRef = useRef<HTMLUListElement | null>(null);
       {isCategorizing ? <Loader2 className="animate-spin" /> : <Wand2 />}
   </button>
 
-  <div className="absolute z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm bg-gray-800 text-white px-2 py-1 rounded shadow-lg top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap">
+  <div className="max-sm:hidden absolute z-10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 text-sm bg-gray-800 text-white px-2 py-1 rounded shadow-lg top-full mt-2 left-1/2 -translate-x-1/2 whitespace-nowrap">
     Get smart categorizations with AI
   </div>
 </div>
